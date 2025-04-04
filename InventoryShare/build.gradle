@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.wasans'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'spigot-repo'
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
+    maven {
+        name = 'sonatype'
+        url = 'https://oss.sonatype.org/content/groups/public/'
+    }
+}
+
+dependencies {
+    compileOnly 'org.spigotmc:spigot-api:1.20.4-R0.1-SNAPSHOT'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+jar {
+    archiveBaseName.set('InventoryShare')
+    archiveVersion.set('1.0')
+}
+
+tasks.register('runServer', JavaExec) {
+    group = 'minecraft'
+    description = 'Run the Spigot server'
+    workingDir = file('server')
+    mainClass = '-jar'
+    args = ['spigot-1.21.4.jar', '--nogui']
+    standardInput = System.in
+    jvmArgs = ['-Xmx1G', '-Xms1G']
+}

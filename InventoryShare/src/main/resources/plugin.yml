@@ -1,0 +1,8 @@
+name: InventoryShare
+version: 1.0
+main: com.wasans.inventoryshare.InventoryShare
+api-version: 1.20
+commands:
+  teaminv:
+    description: 팀 인벤토리 공유 명령어
+    usage: /teaminv [toggle|open]
